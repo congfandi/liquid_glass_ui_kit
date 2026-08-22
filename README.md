@@ -8,7 +8,7 @@ Everything is themeable through a single `GlassTheme`, and every component reads
 its blur, tint, rim-highlight and radii from that one place, so your whole app
 stays consistent.
 
-![Liquid Glass UI example showing cards, controls, overlays, and navigation](example.gif)
+![Liquid Glass UI example showing cards, controls, overlays, and navigation](https://raw.githubusercontent.com/congfandi/liquid_glass_ui_kit/main/example.gif?v=0.1.1)
 
 [Live documentation](https://congfandi.github.io/liquid_glass_ui_kit/) ·
 [Source code](https://github.com/congfandi/liquid_glass_ui_kit) ·

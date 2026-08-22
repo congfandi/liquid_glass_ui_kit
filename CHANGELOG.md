@@ -1,3 +1,7 @@
+## 0.1.1
+
+- Fixed the animated README preview on pub.dev by using an absolute image URL.
+
 ## 0.1.0
 
 Initial release.
