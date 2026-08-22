@@ -1,11 +1,11 @@
-name: liquid_glass_ui
+name: liquid_glass_ui_kit
 description: >-
   An accessible, customizable Liquid Glass design system for Flutter with
   translucent themes and ready-made widgets for mobile, web, and desktop.
 version: 0.1.0
-homepage: https://github.com/congfandi/liquid_glass_ui
-repository: https://github.com/congfandi/liquid_glass_ui
-issue_tracker: https://github.com/congfandi/liquid_glass_ui/issues
+homepage: https://github.com/congfandi/liquid_glass_ui_kit
+repository: https://github.com/congfandi/liquid_glass_ui_kit
+issue_tracker: https://github.com/congfandi/liquid_glass_ui_kit/issues
 screenshots:
   - description: Liquid Glass UI components running in the Flutter example app.
     path: example.gif

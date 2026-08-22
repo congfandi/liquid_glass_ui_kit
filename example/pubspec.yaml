@@ -1,4 +1,4 @@
-name: liquid_glass_ui_example
+name: liquid_glass_ui_kit_example
 description: Demonstrates the Liquid Glass UI component kit.
 publish_to: none
 version: 1.0.0
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  liquid_glass_ui:
+  liquid_glass_ui_kit:
     path: ../
 
 dev_dependencies:

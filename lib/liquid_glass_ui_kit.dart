@@ -4,7 +4,7 @@
 /// Wrap your app in a [GlassTheme], then drop in the components:
 ///
 /// ```dart
-/// import 'package:liquid_glass_ui/liquid_glass_ui.dart';
+/// import 'package:liquid_glass_ui_kit/liquid_glass_ui_kit.dart';
 ///
 /// GlassTheme(
 ///   data: GlassThemeData.dark(),
@@ -15,7 +15,7 @@
 ///   ),
 /// );
 /// ```
-library liquid_glass_ui;
+library liquid_glass_ui_kit;
 
 // Theme
 export 'src/theme/glass_colors.dart';

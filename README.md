@@ -10,9 +10,9 @@ stays consistent.
 
 ![Liquid Glass UI example showing cards, controls, overlays, and navigation](example.gif)
 
-[Live documentation](https://congfandi.github.io/liquid_glass_ui/) ·
-[Source code](https://github.com/congfandi/liquid_glass_ui) ·
-[Report an issue](https://github.com/congfandi/liquid_glass_ui/issues)
+[Live documentation](https://congfandi.github.io/liquid_glass_ui_kit/) ·
+[Source code](https://github.com/congfandi/liquid_glass_ui_kit) ·
+[Report an issue](https://github.com/congfandi/liquid_glass_ui_kit/issues)
 
 - 🧊 Real `BackdropFilter` glass with a rim highlight and soft shadow
 - 🌗 Light & dark, **monochrome by default** (glass + white, no blue)
@@ -24,17 +24,13 @@ stays consistent.
 
 ## Install
 
-Until the pub.dev package name is finalized, install directly from GitHub:
-
 ```yaml
 dependencies:
-  liquid_glass_ui:
-    git:
-      url: https://github.com/congfandi/liquid_glass_ui.git
+  liquid_glass_ui_kit: ^0.1.0
 ```
 
 ```dart
-import 'package:liquid_glass_ui/liquid_glass_ui.dart';
+import 'package:liquid_glass_ui_kit/liquid_glass_ui_kit.dart';
 ```
 
 ## Quick start
@@ -43,7 +39,7 @@ Wrap your app (or a subtree) in a `GlassTheme`, then use the components:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:liquid_glass_ui/liquid_glass_ui.dart';
+import 'package:liquid_glass_ui_kit/liquid_glass_ui_kit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
