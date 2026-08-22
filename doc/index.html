@@ -1,0 +1,560 @@
+<title>Liquid Glass UI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+  /* ── A committed "Liquid Glass" world: frosted panels over a moody gradient.
+     Single-theme by design — the subject IS the dark glass aesthetic — so every
+     color and the ground are painted explicitly. ── */
+  :root {
+    --ink: #F5F6FB;
+    --ink-dim: rgba(235, 237, 247, 0.72);
+    --ink-faint: rgba(235, 237, 247, 0.5);
+    --line: rgba(255, 255, 255, 0.14);
+    --line-strong: rgba(255, 255, 255, 0.28);
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-2: rgba(255, 255, 255, 0.12);
+    --rim: rgba(255, 255, 255, 0.55);
+    --accent: #ffffff;
+    --destructive: #FF6B63;
+    --code-key: #C6B4FF;
+    --code-str: #9FE7C9;
+    --code-com: rgba(235, 237, 247, 0.42);
+    --maxw: 1080px;
+    --r-lg: 28px;
+    --r-md: 18px;
+    --r-pill: 999px;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    line-height: 1.6;
+    background:
+      radial-gradient(120% 90% at 12% -8%, #4a2b8f 0%, rgba(74,43,143,0) 46%),
+      radial-gradient(120% 80% at 92% 4%, #b0466f 0%, rgba(176,70,111,0) 44%),
+      radial-gradient(140% 120% at 80% 108%, #1f7d7a 0%, rgba(31,125,122,0) 52%),
+      #0d0b1a;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Reusable frosted surface with a top rim highlight, echoing GlassSurface. */
+  .glass {
+    position: relative;
+    background: linear-gradient(150deg, var(--glass-2), var(--glass));
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    -webkit-backdrop-filter: blur(26px) saturate(1.2);
+    backdrop-filter: blur(26px) saturate(1.2);
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.6);
+    overflow: hidden;
+  }
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, var(--rim), rgba(255,255,255,0) 34%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .glass > * { position: relative; }
+
+  /* ── Type scale ── */
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", "Manrope", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  code, pre, .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  /* ── Header ── */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    background: rgba(13, 11, 26, 0.45);
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 62px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand .cube { font-size: 1.15rem; }
+  header.site nav { margin-left: auto; display: flex; gap: 6px; flex-wrap: wrap; }
+  header.site nav a {
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 7px 13px;
+    border-radius: var(--r-pill);
+    transition: background 0.2s, color 0.2s;
+  }
+  header.site nav a:hover { color: var(--ink); background: var(--glass); }
+  @media (max-width: 720px) { header.site nav { display: none; } }
+
+  /* ── Hero ── */
+  .hero { padding: 72px 0 48px; }
+  .hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); font-weight: 800; line-height: 1.02; }
+  .hero .lede {
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    color: var(--ink-dim);
+    max-width: 40ch;
+    margin: 22px 0 0;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .pill-tag {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 0.82rem; font-weight: 600;
+    padding: 8px 15px;
+    border-radius: var(--r-pill);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .pill-tag b { color: var(--ink); font-weight: 700; }
+
+  .install {
+    margin-top: 30px;
+    display: inline-flex; align-items: center; gap: 14px;
+    padding: 14px 18px;
+    border-radius: var(--r-md);
+  }
+  .install code { font-size: 0.92rem; color: var(--ink); }
+  .install .dim { color: var(--ink-faint); }
+
+  /* ── Section scaffolding ── */
+  section { padding: 40px 0; scroll-margin-top: 80px; }
+  .sec-head { margin-bottom: 26px; }
+  .sec-head h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin-top: 8px; }
+  .sec-head p { color: var(--ink-dim); margin: 10px 0 0; max-width: 60ch; }
+
+  /* ── Live nav-bar demo ── */
+  .demo { padding: 30px; }
+  .demo-stage {
+    border-radius: var(--r-lg);
+    padding: 60px 20px 26px;
+    background:
+      radial-gradient(90% 70% at 20% 10%, rgba(120,80,200,0.5), transparent 60%),
+      radial-gradient(80% 80% at 90% 90%, rgba(30,150,140,0.45), transparent 60%),
+      linear-gradient(160deg, #2c1b4d, #7a2f52 55%, #1f6b68);
+    border: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .navbar {
+    position: relative;
+    display: flex;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 8px;
+    border-radius: 40px;
+    background: linear-gradient(150deg, rgba(255,255,255,0.16), rgba(255,255,255,0.07));
+    border: 1px solid var(--line-strong);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+    backdrop-filter: blur(22px) saturate(1.3);
+    box-shadow: 0 20px 44px -18px rgba(0,0,0,0.6);
+  }
+  .nav-pill {
+    position: absolute;
+    top: 8px; bottom: 8px; left: 8px;
+    width: calc((100% - 16px) / 5);
+    border-radius: 32px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.35);
+    transform: translateX(0);
+  }
+  .navbar.slide .nav-pill { transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1); }
+  .navbar.bounce .nav-pill.pop { animation: pillpop 0.46s cubic-bezier(0.22,1,0.36,1); }
+  @keyframes pillpop {
+    0% { transform: translateX(var(--x)) scaleY(1); }
+    35% { transform: translateX(var(--x)) scaleY(1.14); }
+    100% { transform: translateX(var(--x)) scaleY(1); }
+  }
+  .nav-cell {
+    position: relative;
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    padding: 9px 4px;
+    border: 0; background: transparent; cursor: pointer;
+    color: rgba(235,237,247,0.66);
+    font-family: inherit;
+    transition: color 0.25s;
+  }
+  .nav-cell svg { width: 25px; height: 25px; }
+  .nav-cell .lbl { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.02em; }
+  .nav-cell[aria-selected="true"] { color: #12101f; }
+  .navbar.dark-ink .nav-cell[aria-selected="true"] { color: #12101f; }
+  .navbar.bounce .nav-cell[aria-selected="true"] svg { animation: iconpop 0.46s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes iconpop {
+    0% { transform: scale(1); }
+    35% { transform: scale(1.28); }
+    100% { transform: scale(1); }
+  }
+  .navbar.no-labels .nav-cell .lbl { display: none; }
+
+  .demo-controls {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-top: 24px;
+  }
+  .toggle {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.86rem; font-weight: 600; color: var(--ink-dim);
+    padding: 9px 15px; border-radius: var(--r-pill);
+    background: var(--glass); border: 1px solid var(--line);
+    cursor: pointer; user-select: none;
+  }
+  .toggle input { position: absolute; opacity: 0; pointer-events: none; }
+  .switch {
+    width: 40px; height: 24px; border-radius: 999px;
+    background: rgba(255,255,255,0.16); position: relative;
+    transition: background 0.2s;
+    flex: none;
+  }
+  .switch::after {
+    content: ""; position: absolute; top: 3px; left: 3px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+    transition: transform 0.2s;
+  }
+  .toggle input:checked + .switch { background: rgba(255,255,255,0.85); }
+  .toggle input:checked + .switch::after { transform: translateX(16px); background:#1c1c1e; }
+  .toggle:focus-within { outline: 2px solid var(--rim); outline-offset: 2px; }
+  .demo-hint { text-align: center; color: var(--ink-faint); font-size: 0.85rem; margin-top: 16px; }
+
+  /* ── Component catalog ── */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+  .card { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .card h3 { font-size: 1.15rem; }
+  .card .role { color: var(--ink-dim); font-size: 0.92rem; margin: 0; flex: 1; }
+  .card .api { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-family: "JetBrains Mono", monospace; font-size: 0.72rem;
+    padding: 4px 9px; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid var(--line);
+    color: var(--ink-dim);
+  }
+  .card .cat {
+    align-self: flex-start;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ── Code blocks ── */
+  pre.code {
+    margin: 0;
+    padding: 18px 20px;
+    border-radius: var(--r-md);
+    background: rgba(8, 7, 16, 0.55);
+    border: 1px solid var(--line);
+    overflow-x: auto;
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+  pre.code .k { color: var(--code-key); }
+  pre.code .s { color: var(--code-str); }
+  pre.code .c { color: var(--code-com); font-style: italic; }
+  pre.code .p { color: var(--ink-dim); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+  .feature { padding: 22px 24px; }
+  .feature h3 { font-size: 1.05rem; margin-bottom: 8px; display: flex; align-items: center; gap: 9px; }
+  .feature p { color: var(--ink-dim); margin: 0; font-size: 0.94rem; }
+  .feature .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: none; box-shadow: 0 0 12px var(--rim); }
+
+  .anim-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .anim-table th, .anim-table td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .anim-table th { color: var(--ink-faint); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .anim-table td:first-child { font-family: "JetBrains Mono", monospace; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+  .anim-table .def { font-family: "JetBrains Mono", monospace; color: var(--ink-dim); font-size: 0.8rem; }
+
+  footer.site { padding: 46px 0 60px; color: var(--ink-faint); font-size: 0.88rem; border-top: 1px solid var(--line); margin-top: 30px; }
+  footer.site a { color: var(--ink-dim); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<header class="site">
+  <div class="wrap">
+    <span class="brand"><span class="cube">🧊</span> Liquid Glass UI</span>
+    <nav>
+      <a href="#start">Start</a>
+      <a href="#navbar">Nav bar</a>
+      <a href="#catalog">Components</a>
+      <a href="#theming">Theming</a>
+      <a href="#a11y">Accessibility</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="eyebrow">Flutter · iOS 26.4 · Liquid Glass</p>
+    <h1>Frosted UI,<br>ready to drop in.</h1>
+    <p class="lede">A translucent design system for Flutter — colors, type and
+      glass components that feel native, monochrome by default with no blue in sight.</p>
+
+    <div class="tags">
+      <span class="pill-tag">🧊 <b>Real</b> BackdropFilter glass</span>
+      <span class="pill-tag">🌗 Light &amp; dark</span>
+      <span class="pill-tag">🎞️ Animated nav bar</span>
+      <span class="pill-tag">♿ A11y-aware</span>
+    </div>
+
+    <div class="glass install" id="start">
+      <code><span class="dim">flutter pub add</span> Liquid Glass UI</code>
+    </div>
+  </div>
+
+  <!-- LIVE NAV BAR -->
+  <section id="navbar">
+    <div class="sec-head">
+      <p class="eyebrow">The signature piece</p>
+      <h2>A bottom bar that bubbles</h2>
+      <p>The selected highlight <b>slides</b> between items and the icon &amp; pill
+        give a springy <b>pop</b> — two animations you can toggle independently.
+        Tap the items and flip the switches; it mirrors the Flutter API exactly.</p>
+    </div>
+
+    <div class="glass demo">
+      <div class="demo-stage">
+        <div class="navbar slide bounce" id="nav" role="tablist" aria-label="Demo navigation">
+          <div class="nav-pill" id="pill" style="--x:0"></div>
+        </div>
+      </div>
+
+      <div class="demo-controls">
+        <label class="toggle"><input type="checkbox" id="t-slide" checked><span class="switch"></span> animateIndicator</label>
+        <label class="toggle"><input type="checkbox" id="t-bounce" checked><span class="switch"></span> animateBounce</label>
+        <label class="toggle"><input type="checkbox" id="t-labels" checked><span class="switch"></span> showLabels</label>
+      </div>
+      <p class="demo-hint">Selected item drives your own state — it's a controlled widget.</p>
+    </div>
+
+    <div style="height:18px"></div>
+    <pre class="code"><span class="k">GlassBottomNavBar</span>(
+  currentIndex<span class="p">:</span> _tab,
+  onTap<span class="p">:</span> (i) =&gt; setState(() =&gt; _tab = i),
+  items<span class="p">:</span> _items,
+
+  <span class="c">// Each animation toggles on its own:</span>
+  animateIndicator<span class="p">:</span> <span class="k">true</span>,   <span class="c">// sliding bubble</span>
+  animateBounce<span class="p">:</span> <span class="k">true</span>,      <span class="c">// springy pop (icon + pill)</span>
+
+  showLabels<span class="p">:</span> <span class="k">true</span>,         <span class="c">// false → icons only</span>
+  borderRadius<span class="p">:</span> <span class="s">40</span>,          <span class="c">// big values clamp to a capsule</span>
+)</pre>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="catalog">
+    <div class="sec-head">
+      <p class="eyebrow">Everything in the box</p>
+      <h2>Component catalog</h2>
+      <p>Eleven building blocks, all reading their blur, tint and radii from one
+        <code>GlassTheme</code>. Import once, use anywhere.</p>
+    </div>
+
+    <div class="grid" id="catalog-grid"></div>
+  </section>
+
+  <!-- ANIMATION DETAIL -->
+  <section id="motion">
+    <div class="sec-head">
+      <p class="eyebrow">Motion</p>
+      <h2>Two flags, full control</h2>
+    </div>
+    <div class="glass" style="padding: 8px 22px;">
+      <table class="anim-table">
+        <thead><tr><th>Flag</th><th>Default</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td>animateIndicator</td><td class="def">true</td><td>The highlight <b>slides</b> between items. Off → it appears instantly on the selected item.</td></tr>
+          <tr><td>animateBounce</td><td class="def">true</td><td>The selected <b>icon and pill pop</b> with a spring on selection.</td></tr>
+          <tr><td>showLabels</td><td class="def">true</td><td>Set <b>false</b> for an icons-only bar.</td></tr>
+          <tr><td>borderRadius</td><td class="def">40</td><td>Bar corner radius; large values clamp to a full capsule.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--ink-faint); font-size:0.9rem; margin-top:14px;">
+      Both animations disable themselves automatically when the system
+      <b>Reduce Motion</b> setting is on.</p>
+  </section>
+
+  <!-- THEMING -->
+  <section id="theming">
+    <div class="sec-head">
+      <p class="eyebrow">One source of truth</p>
+      <h2>Theming</h2>
+      <p>Wrap a subtree in <code>GlassTheme</code>; read it anywhere with
+        <code>GlassTheme.of(context)</code>. Palette, type and metrics live together.</p>
+    </div>
+    <div class="two-col">
+      <pre class="code"><span class="k">GlassTheme</span>(
+  data<span class="p">:</span> <span class="k">GlassThemeData</span>.dark(),
+  child<span class="p">:</span> <span class="k">GlassScaffold</span>(
+    appBar<span class="p">:</span> <span class="k">GlassAppBar</span>(title<span class="p">:</span> Text(<span class="s">'Home'</span>)),
+    body<span class="p">:</span> ...,
+  ),
+)
+
+<span class="c">// Read tokens anywhere</span>
+<span class="k">final</span> t = <span class="k">GlassTheme</span>.of(context);
+t.colors.accent;      <span class="c">// monochrome accent</span>
+t.typography.title1;  <span class="c">// SF-Pro-style scale</span>
+t.metrics.blurSigma;  <span class="c">// shared blur</span></pre>
+      <pre class="code"><span class="c">// Opt into a color accent if you want one</span>
+<span class="k">GlassTheme</span>(
+  data<span class="p">:</span> <span class="k">GlassThemeData</span>.light(
+    metrics<span class="p">:</span> <span class="k">GlassMetrics</span>(blurSigma<span class="p">:</span> <span class="s">32</span>),
+  ).copyWith(
+    colors<span class="p">:</span> <span class="k">GlassColors</span>.light.copyWith(
+      accent<span class="p">:</span> <span class="k">Color</span>(<span class="s">0xFFAF52DE</span>),
+    ),
+  ),
+  child<span class="p">:</span> ...,
+)</pre>
+    </div>
+  </section>
+
+  <!-- A11Y -->
+  <section id="a11y">
+    <div class="sec-head">
+      <p class="eyebrow">Designed for humans</p>
+      <h2>Accessibility, by default</h2>
+      <p>Translucency can wreck contrast over busy backgrounds — so the kit reacts
+        to the system settings for you.</p>
+    </div>
+    <div class="two-col">
+      <div class="glass feature">
+        <h3><span class="dot"></span> Reduce Transparency</h3>
+        <p>Glass surfaces drop the blur and render as opaque, clearly-bordered
+          panels — keeping text above WCAG contrast.</p>
+      </div>
+      <div class="glass feature">
+        <h3><span class="dot"></span> Reduce Motion</h3>
+        <p>Press, toggle, nav, dialog and menu animations switch off — no slide,
+          no spring, no parallax.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <strong>Liquid Glass UI</strong> · iOS 26.4 Liquid Glass for Flutter · MIT © 2026<br>
+    Install with <code>flutter pub add liquid_glass_ui</code>. The glass material is
+    colorless white over a blur — no blue anywhere unless you add it.
+  </div>
+</footer>
+
+<script>
+  // ── Component catalog data ──
+  const components = [
+    ["Foundation", "GlassSurface", "The blurred, tinted, rim-lit panel every other component is built on.", ["blurSigma", "tint", "borderRadius", "shadow"]],
+    ["Layout", "GlassScaffold", "Page shell that floats the app bar & nav bar over a scrollable body.", ["appBar", "bottomNavigationBar", "background"]],
+    ["Navigation", "GlassAppBar", "Translucent top bar; a PreferredSizeWidget, floating or edge-to-edge.", ["title", "leading", "actions", "floating"]],
+    ["Navigation", "GlassBottomNavBar", "Floating capsule tab bar with the sliding, popping indicator.", ["items", "currentIndex", "animateIndicator", "showLabels"]],
+    ["Action", "GlassButton", "Capsule button in glass, filled or plain variants with press-in.", ["label", "icon", "variant", "expand"]],
+    ["Content", "GlassCard", "Padded frosted panel for grouping content; optionally tappable.", ["child", "padding", "onTap"]],
+    ["Content", "GlassPill", "Small tag, chip or filter with an optional icon & selected state.", ["label", "icon", "selected"]],
+    ["Control", "GlassSwitch", "iOS-style toggle with a frosted glass track & contrast-aware knob.", ["value", "onChanged"]],
+    ["Overlay", "GlassSheet", "Bottom sheet with a grab handle. showGlassBottomSheet() presents it.", ["title", "builder", "heightFactor"]],
+    ["Overlay", "GlassDialog", "Frosted alert popup with hairline-separated actions.", ["title", "message", "actions"]],
+    ["Overlay", "GlassActionMenu", "Anchored context menu that flips above when short on room.", ["items", "showGlassActionMenu()"]],
+  ];
+  const grid = document.getElementById("catalog-grid");
+  grid.innerHTML = components.map(([cat, name, role, api]) => `
+    <article class="glass card">
+      <span class="cat">${cat}</span>
+      <h3>${name}</h3>
+      <p class="role">${role}</p>
+      <div class="api">${api.map(a => `<span class="chip">${a}</span>`).join("")}</div>
+    </article>`).join("");
+
+  // ── Live nav bar ──
+  const items = [
+    ["Home", "M4 11.5 12 4l8 7.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"],
+    ["Arcade", "M7 8h10a4 4 0 0 1 4 4 4 4 0 0 1-7 3H10a4 4 0 1 1-3-7Zm0 4h2m-1-1v2"],
+    ["Friends", "M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20a6 6 0 0 1 12 0Zm12-3a6 6 0 0 1 8 3"],
+    ["Library", "M5 4h14a1 1 0 0 1 1 1v3H4V5a1 1 0 0 1 1-1Zm-1 6h16v9a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"],
+    ["Search", "M11 4a7 7 0 1 0 4.2 12.6L20 21m-3.8-4.8A7 7 0 0 0 11 4Z"],
+  ];
+  const nav = document.getElementById("nav");
+  const pill = document.getElementById("pill");
+  let selected = 0;
+
+  items.forEach(([label, path], i) => {
+    const b = document.createElement("button");
+    b.className = "nav-cell";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    b.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="${path}"/></svg>
+      <span class="lbl">${label}</span>`;
+    b.addEventListener("click", () => select(i));
+    nav.appendChild(b);
+  });
+
+  function select(i) {
+    selected = i;
+    const cells = nav.querySelectorAll(".nav-cell");
+    cells.forEach((c, k) => c.setAttribute("aria-selected", k === i ? "true" : "false"));
+    pill.style.setProperty("--x", `${i * 100}%`);
+    pill.style.transform = `translateX(${i * 100}%)`;
+    // retrigger the pop animation
+    pill.classList.remove("pop");
+    void pill.offsetWidth;
+    pill.classList.add("pop");
+  }
+
+  const bind = (id, cls, on = true) => {
+    const el = document.getElementById(id);
+    const apply = () => nav.classList.toggle(cls, el.checked === on);
+    el.addEventListener("change", apply);
+    apply();
+  };
+  bind("t-slide", "slide");
+  bind("t-bounce", "bounce");
+  // labels toggle is inverted (checked = show)
+  const labelsEl = document.getElementById("t-labels");
+  const applyLabels = () => nav.classList.toggle("no-labels", !labelsEl.checked);
+  labelsEl.addEventListener("change", applyLabels);
+  applyLabels();
+
+  select(0);
+</script>

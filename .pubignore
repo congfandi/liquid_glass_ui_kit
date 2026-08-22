@@ -1,0 +1,8 @@
+# Build & tooling output — never ship these to pub.dev.
+build/
+.dart_tool/
+.idea/
+.vscode/
+*.iml
+example/build/
+example/.dart_tool/

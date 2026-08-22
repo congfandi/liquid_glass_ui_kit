@@ -1,0 +1,29 @@
+name: liquid_glass_ui
+description: >-
+  Liquid Glass UI for Flutter. A drop-in glassmorphism design
+  system with ready-made colors, typography, and translucent components:
+  bottom nav bar, buttons, cards, app bar, pills, switches and more.
+version: 0.1.0
+repository: https://github.com/your-org/liquid_glass_ui
+issue_tracker: https://github.com/your-org/liquid_glass_ui/issues
+topics:
+  - ui
+  - theme
+  - glassmorphism
+  - ios
+  - cupertino
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
