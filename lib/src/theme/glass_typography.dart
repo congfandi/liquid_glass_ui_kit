@@ -174,7 +174,8 @@ class GlassTypography {
 
   /// Returns a copy with [fontFamily] applied to every style. Use this to plug
   /// in a bundled font (for example an SF-Pro-alike) on Android and web.
-  GlassTypography apply({String? fontFamily, List<String>? fontFamilyFallback}) {
+  GlassTypography apply(
+      {String? fontFamily, List<String>? fontFamilyFallback}) {
     return _map(
       (s) => s.copyWith(
         fontFamily: fontFamily,

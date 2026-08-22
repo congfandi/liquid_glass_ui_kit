@@ -8,6 +8,12 @@ Everything is themeable through a single `GlassTheme`, and every component reads
 its blur, tint, rim-highlight and radii from that one place, so your whole app
 stays consistent.
 
+![Liquid Glass UI example showing cards, controls, overlays, and navigation](example.gif)
+
+[Live documentation](https://congfandi.github.io/liquid_glass_ui/) ·
+[Source code](https://github.com/congfandi/liquid_glass_ui) ·
+[Report an issue](https://github.com/congfandi/liquid_glass_ui/issues)
+
 - 🧊 Real `BackdropFilter` glass with a rim highlight and soft shadow
 - 🌗 Light & dark, **monochrome by default** (glass + white, no blue)
 - 🎞️ Smooth nav-bar animations (sliding bubble + springy pop), each toggleable
@@ -18,9 +24,13 @@ stays consistent.
 
 ## Install
 
+Until the pub.dev package name is finalized, install directly from GitHub:
+
 ```yaml
 dependencies:
-  liquid_glass_ui: ^0.1.0
+  liquid_glass_ui:
+    git:
+      url: https://github.com/congfandi/liquid_glass_ui.git
 ```
 
 ```dart
@@ -298,8 +308,16 @@ screen is fine, but avoid dozens of overlapping ones in long lists.
 
 ## Example
 
-A full demo lives in [`example/`](example/lib/main.dart) — every component, light
-& dark, with live toggles for the nav-bar animations and icons-only mode.
+The animation at the top of this page is captured from the full demo in
+[`example/`](example/lib/main.dart). It includes every component in light and
+dark mode, plus live toggles for the nav-bar animations and icons-only mode.
+
+Run it locally:
+
+```sh
+cd example
+flutter run
+```
 
 ## License
 

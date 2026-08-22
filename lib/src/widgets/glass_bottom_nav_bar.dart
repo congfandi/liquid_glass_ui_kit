@@ -115,8 +115,8 @@ class _GlassBottomNavBarState extends State<GlassBottomNavBar>
   // bounce but softer so the pill doesn't clip the bar.
   late final Animation<double> _pop = TweenSequence<double>([
     TweenSequenceItem(
-      tween: Tween(begin: 1.0, end: 1.12)
-          .chain(CurveTween(curve: Curves.easeOut)),
+      tween:
+          Tween(begin: 1.0, end: 1.12).chain(CurveTween(curve: Curves.easeOut)),
       weight: 35,
     ),
     TweenSequenceItem(
@@ -159,8 +159,7 @@ class _GlassBottomNavBarState extends State<GlassBottomNavBar>
 
     // Fractional horizontal alignment of the sliding bubble for the selected
     // slot: -1 (first) … +1 (last).
-    final double xAlign =
-        n == 1 ? 0 : (2 * widget.currentIndex / (n - 1)) - 1;
+    final double xAlign = n == 1 ? 0 : (2 * widget.currentIndex / (n - 1)) - 1;
 
     final Color indicatorFill = colors.glassHighlight.withValues(
       alpha: colors.brightness == Brightness.dark ? 0.16 : 0.55,
@@ -260,7 +259,8 @@ class _NavCell extends StatefulWidget {
   State<_NavCell> createState() => _NavCellState();
 }
 
-class _NavCellState extends State<_NavCell> with SingleTickerProviderStateMixin {
+class _NavCellState extends State<_NavCell>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 460),
@@ -269,8 +269,8 @@ class _NavCellState extends State<_NavCell> with SingleTickerProviderStateMixin 
   // A pop that overshoots then springs back to rest.
   late final Animation<double> _scale = TweenSequence<double>([
     TweenSequenceItem(
-      tween: Tween(begin: 1.0, end: 1.28)
-          .chain(CurveTween(curve: Curves.easeOut)),
+      tween:
+          Tween(begin: 1.0, end: 1.28).chain(CurveTween(curve: Curves.easeOut)),
       weight: 35,
     ),
     TweenSequenceItem(
@@ -351,8 +351,7 @@ class _NavCellState extends State<_NavCell> with SingleTickerProviderStateMixin 
           child: widget.drawOwnIndicator
               ? DecoratedBox(
                   decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(widget.indicatorRadius),
+                    borderRadius: BorderRadius.circular(widget.indicatorRadius),
                     color: widget.selected
                         ? colors.glassHighlight.withValues(
                             alpha: colors.brightness == Brightness.dark

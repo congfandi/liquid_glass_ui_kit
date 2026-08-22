@@ -89,8 +89,7 @@ class GlassSurface extends StatelessWidget {
     final colors = theme.colors;
     final metrics = theme.metrics;
 
-    final radius = borderRadius ??
-        BorderRadius.circular(metrics.mediumRadius);
+    final radius = borderRadius ?? BorderRadius.circular(metrics.mediumRadius);
     final effectiveTint = tint ?? colors.glassTint;
     final effectiveHighlight = highlight ?? colors.glassHighlight;
     final effectiveBorder = borderColor ?? colors.glassBorder;

@@ -54,8 +54,7 @@ void main() {
     expect(taps, 1);
   });
 
-  testWidgets('GlassButton is disabled when onPressed is null',
-      (tester) async {
+  testWidgets('GlassButton is disabled when onPressed is null', (tester) async {
     await tester.pumpWidget(_wrap(const GlassButton(label: 'Off')));
     expect(find.text('Off'), findsOneWidget);
     // No throw when tapping a disabled button.

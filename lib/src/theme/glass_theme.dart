@@ -119,8 +119,7 @@ class GlassTheme extends InheritedWidget {
   /// If no [GlassTheme] is found, a theme is synthesized from the ambient
   /// platform brightness so widgets still render sensibly.
   static GlassThemeData of(BuildContext context) {
-    final widget =
-        context.dependOnInheritedWidgetOfExactType<GlassTheme>();
+    final widget = context.dependOnInheritedWidgetOfExactType<GlassTheme>();
     if (widget != null) return widget.data;
     return GlassThemeData(colors: GlassColors.of(context));
   }

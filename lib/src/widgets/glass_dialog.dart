@@ -81,8 +81,7 @@ class GlassDialog extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: theme.typography.headline,
                         ),
-                      if (title != null &&
-                          (message != null || content != null))
+                      if (title != null && (message != null || content != null))
                         const SizedBox(height: 6),
                       if (content != null)
                         content!
@@ -167,9 +166,9 @@ class _ActionButton extends StatelessWidget {
             action.label,
             textAlign: TextAlign.center,
             style: theme.typography.button.copyWith(
-              color: color.withValues(alpha: action.onPressed == null ? 0.4 : 1),
-              fontWeight:
-                  action.isDefault ? FontWeight.w700 : FontWeight.w500,
+              color:
+                  color.withValues(alpha: action.onPressed == null ? 0.4 : 1),
+              fontWeight: action.isDefault ? FontWeight.w700 : FontWeight.w500,
             ),
           ),
         ),
@@ -221,7 +220,8 @@ Future<T?> showGlassDialog<T>({
       actions: actions,
     ),
     transitionBuilder: (context, animation, _, child) {
-      final curved = CurvedAnimation(parent: animation, curve: Curves.easeOutBack);
+      final curved =
+          CurvedAnimation(parent: animation, curve: Curves.easeOutBack);
       return FadeTransition(
         opacity: animation,
         child: ScaleTransition(

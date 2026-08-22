@@ -104,8 +104,8 @@ class GlassColors {
   ///
   /// Falls back to [light] when there is no ambient media query.
   static GlassColors of(BuildContext context) {
-    final brightness = MediaQuery.maybePlatformBrightnessOf(context) ??
-        Brightness.light;
+    final brightness =
+        MediaQuery.maybePlatformBrightnessOf(context) ?? Brightness.light;
     return brightness == Brightness.dark ? dark : light;
   }
 
